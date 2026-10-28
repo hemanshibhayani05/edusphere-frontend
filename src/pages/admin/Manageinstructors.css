@@ -1,0 +1,314 @@
+/* =========================================================================
+   MANAGE INSTRUCTORS STYLING
+   ========================================================================= */
+
+.instructors-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.instructor-stat-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.instructor-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.instructor-stat-icon.total {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.instructor-stat-icon.courses {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.instructor-stat-icon.active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.instructor-stat-icon.commission-icon {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.instructor-stat-icon.payout-icon {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.inst-dept-badge {
+  display: inline-block;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.inst-course-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 2px 4px 2px 0;
+}
+
+/* ── Pay Instructor Button in Table ── */
+.btn-pay-instructor {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-pay-instructor:hover {
+  background: #16a34a;
+  color: #ffffff;
+  border-color: #16a34a;
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25);
+}
+
+/* ── Paid Indicator Badge ── */
+.badge-paid-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: default;
+  white-space: nowrap;
+}
+
+/* ── Financial Report Button in Table ── */
+.btn-report-instructor {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-report-instructor:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+/* ── Trainer Financial Report Modal ── */
+.report-modal-dialog {
+  max-width: 820px !important;
+  width: 95% !important;
+}
+
+.trainer-report-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.trainer-report-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.btn-download-trainer-csv {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-download-trainer-csv:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+/* ── Financial Summary Metrics Cards ── */
+.trainer-financial-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.t-metric-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.t-metric-card.total-rev {
+  border-left: 4px solid #64748b;
+}
+
+.t-metric-card.admin-cut {
+  border-left: 4px solid #059669;
+  background: #f0fdf4;
+}
+
+.t-metric-card.instructor-payout {
+  border-left: 4px solid #2563eb;
+  background: #f0f7ff;
+}
+
+.t-metric-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.t-metric-val {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  display: block;
+  margin: 6px 0 4px;
+}
+
+.t-metric-sub {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+  display: block;
+}
+
+.t-metric-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.t-metric-badge.cut {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.t-metric-badge.payout {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* ── Commission Formula Banner ── */
+.commission-formula-banner {
+  background: #ffffff;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* ── Trainer Statement Table ── */
+.trainer-statement-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trainer-statement-table th {
+  background: #f8fafc;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.trainer-statement-table td {
+  padding: 12px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.payout-status-badge {
+  display: inline-block;
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}

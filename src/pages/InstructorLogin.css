@@ -1,0 +1,478 @@
+/* ==========================================================================
+   EduSphere - Instructor Login Portal (Emerald & Deep Slate Theme)
+   ========================================================================== */
+
+.instructor-login-page {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  background-color: #061118;
+  position: relative;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Ambient Radial Glows */
+.inst-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.inst-bg-glow.glow-1 {
+  width: 520px;
+  height: 520px;
+  top: -10%;
+  right: 15%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0) 70%);
+  animation: instGlowFloat1 10s ease-in-out infinite alternate;
+}
+
+.inst-bg-glow.glow-2 {
+  width: 480px;
+  height: 480px;
+  bottom: -10%;
+  left: 15%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, rgba(14, 165, 233, 0) 70%);
+  animation: instGlowFloat2 12s ease-in-out infinite alternate;
+}
+
+@keyframes instGlowFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-30px, 35px) scale(1.1); }
+}
+
+@keyframes instGlowFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -30px) scale(1.08); }
+}
+
+/* Grid Pattern Overlay */
+.inst-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Card Wrapper */
+.instructor-card-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 470px;
+  animation: instructorCardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes instructorCardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Instructor Login Card */
+.instructor-login-card {
+  background: rgba(15, 23, 42, 0.90);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  padding: 42px 40px 36px;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(16, 185, 129, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top Accent Line */
+.instructor-card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #6366f1 100%);
+}
+
+/* Emblem Icon */
+.instructor-icon-container {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructor-login-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+  color: #ffffff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 10px 25px rgba(16, 185, 129, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.instructor-login-card:hover .instructor-login-icon {
+  transform: scale(1.05);
+}
+
+.instructor-pulse-ring {
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  border: 1.5px solid rgba(16, 185, 129, 0.45);
+  animation: instPulseRing 2.6s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+  z-index: 1;
+}
+
+@keyframes instPulseRing {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.2; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+/* Status Pill */
+.instructor-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #a7f3d0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 0 auto 12px;
+  width: fit-content;
+  display: flex;
+}
+
+.instructor-status-pill .indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px #34d399;
+  animation: blinkStatus 1.8s ease-in-out infinite;
+}
+
+/* Title & Subtitle */
+.instructor-title {
+  margin: 0 0 6px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.5px;
+}
+
+.instructor-login-subtitle {
+  margin: 0 0 22px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Error Banner */
+.instructor-error-banner {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  animation: shakeError 0.35s ease;
+}
+
+.instructor-error-banner svg {
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+/* Demo Credentials Box */
+.instructor-demo-box {
+  background: rgba(30, 41, 59, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.instructor-demo-box .demo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.instructor-demo-box .demo-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #34d399;
+}
+
+.instructor-demo-box .demo-text {
+  font-size: 12px;
+  color: #cbd5e1;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.instructor-demo-box .demo-fill-btn {
+  background: rgba(16, 185, 129, 0.2);
+  color: #a7f3d0;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.instructor-demo-box .demo-fill-btn:hover {
+  background: rgba(16, 185, 129, 0.35);
+  color: #ffffff;
+  border-color: #34d399;
+}
+
+.instructor-demo-box .demo-fill-btn.filled {
+  background: rgba(16, 185, 129, 0.3);
+  color: #ffffff;
+}
+
+/* Form Groups & Inputs */
+.instructor-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.instructor-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 7px;
+  letter-spacing: 0.2px;
+}
+
+.instructor-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.instructor-input-wrapper:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.instructor-input-wrapper:focus-within {
+  border-color: #10b981;
+  background: rgba(15, 23, 42, 0.98);
+  box-shadow:
+    0 0 0 3.5px rgba(16, 185, 129, 0.25),
+    0 4px 15px rgba(16, 185, 129, 0.12);
+}
+
+.instructor-input-wrapper.input-has-error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.instructor-input-wrapper .input-icon {
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 18px;
+  transition: color 0.2s ease;
+  pointer-events: none;
+}
+
+.instructor-input-wrapper:focus-within .input-icon {
+  color: #34d399;
+}
+
+.instructor-input-wrapper input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f8fafc;
+  font-size: 14.5px;
+  padding: 13px 12px 13px 0;
+  width: 100%;
+}
+
+.instructor-input-wrapper input::placeholder {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.instructor-login-btn {
+  width: 100%;
+  height: 50px;
+  margin-top: 6px;
+  background: linear-gradient(135deg, #059669 0%, #10b981 50%, #0d9488 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 10px 25px -5px rgba(16, 185, 129, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.instructor-login-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 16px 32px -6px rgba(16, 185, 129, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.instructor-login-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.instructor-login-btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.instructor-login-btn .btn-arrow {
+  transition: transform 0.2s ease;
+}
+
+.instructor-login-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.instructor-security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 22px;
+  color: #64748b;
+  font-size: 11.5px;
+  letter-spacing: 0.2px;
+}
+
+.instructor-security-note .security-icon {
+  color: #10b981;
+  font-size: 13px;
+}
+
+.instructor-login-footer {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: #94a3b8;
+}
+
+.instructor-link {
+  color: #34d399;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.instructor-link:hover {
+  color: #a7f3d0;
+  text-decoration: underline;
+}
+
+@media (max-width: 550px) {
+  .instructor-login-page {
+    padding: 30px 16px;
+  }
+
+  .instructor-login-card {
+    padding: 32px 22px 28px;
+    border-radius: 18px;
+  }
+
+  .instructor-title {
+    font-size: 24px;
+  }
+
+  .instructor-login-subtitle {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .instructor-demo-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+}

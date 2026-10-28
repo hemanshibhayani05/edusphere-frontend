@@ -1,0 +1,370 @@
+.curriculum-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #172033;
+}
+
+.curriculum-heading,
+.module-heading,
+.lessons-heading,
+.lesson-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.curriculum-heading h3,
+.module-heading h4,
+.lessons-heading h4 {
+    margin: 0;
+}
+
+.curriculum-heading p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.curriculum-module {
+    padding: 20px;
+    border: 1px solid #dbe3ee;
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.module-heading {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.module-index-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background: #e0e7ff;
+    color: #4338ca;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    margin-right: 8px;
+}
+
+.curriculum-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.curriculum-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.curriculum-field input,
+.curriculum-field textarea,
+.curriculum-field select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 13px;
+    color: #172033;
+    background: #fff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.curriculum-field input:focus,
+.curriculum-field textarea:focus,
+.curriculum-field select:focus {
+    outline: none;
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.curriculum-field textarea {
+    resize: vertical;
+}
+
+.lesson-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 14px;
+}
+
+.curriculum-lesson {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.lesson-heading {
+    margin-bottom: 2px;
+}
+
+.add-module-btn,
+.add-lesson-btn,
+.remove-btn {
+    border: none;
+    border-radius: 7px;
+    padding: 9px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+}
+
+.add-module-btn {
+    color: #fff;
+    background: #059669;
+}
+.add-module-btn:hover {
+    background: #047857;
+}
+
+.add-lesson-btn {
+    color: #047857;
+    background: #d1fae5;
+}
+.add-lesson-btn:hover {
+    background: #a7f3d0;
+}
+
+.remove-btn {
+    color: #dc2626;
+    background: #fee2e2;
+}
+.remove-btn:hover {
+    background: #fecaca;
+}
+
+/* ── Interactive Quiz Builder Styles ── */
+.module-quiz-container {
+    margin-top: 8px;
+    padding: 16px;
+    border: 1px dashed #6366f1;
+    border-radius: 10px;
+    background: #f5f7ff;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.quiz-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.quiz-header-bar h5 {
+    margin: 0;
+    font-size: 14px;
+    color: #3730a3;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.quiz-header-desc {
+    font-size: 12px;
+    color: #4b5563;
+    margin: 2px 0 0;
+}
+
+.add-quiz-q-btn {
+    border: 1px solid #6366f1;
+    background: #eef2ff;
+    color: #4338ca;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s ease;
+}
+.add-quiz-q-btn:hover {
+    background: #e0e7ff;
+}
+
+.quiz-question-box {
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #e0e7ff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 1px 2px rgba(99, 102, 241, 0.05);
+}
+
+.quiz-question-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.quiz-q-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #4338ca;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.quiz-remove-q-btn {
+    border: none;
+    background: transparent;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.quiz-remove-q-btn:hover {
+    background: #fee2e2;
+}
+
+.quiz-options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quiz-options-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quiz-options-title small {
+    color: #64748b;
+    font-weight: 400;
+}
+
+.quiz-option-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: #f8fafc;
+    transition: all 0.15s ease;
+}
+
+.quiz-option-item.is-correct {
+    border-color: #10b981;
+    background: #ecfdf5;
+}
+
+.quiz-option-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+    min-width: 80px;
+}
+
+.quiz-option-item.is-correct .quiz-option-radio-label {
+    color: #047857;
+}
+
+.quiz-option-input {
+    flex: 1;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    padding: 7px 10px;
+    font-size: 13px;
+    outline: none;
+    background: #ffffff;
+}
+
+.quiz-option-input:focus {
+    border-color: #6366f1;
+}
+
+.correct-badge {
+    background: #10b981;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.video-link-preview-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #1d4ed8;
+}
+
+@media (max-width: 600px) {
+    .curriculum-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .lesson-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .curriculum-module {
+        padding: 14px;
+    }
+
+    .curriculum-lesson {
+        padding: 12px;
+    }
+
+    .quiz-option-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quiz-option-input {
+        width: 100%;
+    }
+}

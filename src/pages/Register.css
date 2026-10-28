@@ -1,0 +1,635 @@
+/* ==========================================================================
+   EDUSPHERE - REGISTER PAGE STYLING (PERFECTED)
+   ========================================================================== */
+
+.register-page {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  position: relative;
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.10) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
+  overflow-x: hidden;
+}
+
+/* Optional background ambient glow */
+.register-page::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(244, 247, 254, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================================================
+   Register Card Container
+   ========================================================================== */
+
+.register-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 24px;
+  padding: 40px 42px;
+  box-shadow:
+    0 20px 40px -15px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(226, 232, 240, 0.6);
+  animation: registerCardIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes registerCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   Header Section
+   ========================================================================== */
+
+.register-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.register-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.6px;
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+
+.register-header p {
+  color: #64748b;
+  font-size: 14.5px;
+  font-weight: 450;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Alert Banners (Error & Success)
+   ========================================================================== */
+
+.reg-error-box {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  animation: alertFadeIn 0.25s ease;
+}
+
+.reg-error-box svg {
+  flex-shrink: 0;
+  font-size: 17px;
+}
+
+@keyframes alertFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Role Selection Grid
+   ========================================================================== */
+
+.role-selector-block {
+  margin-bottom: 22px;
+}
+
+.role-selector-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 10px;
+  letter-spacing: 0.1px;
+}
+
+.role-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.role-card-option {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+  outline: none;
+  width: 100%;
+}
+
+.role-card-option:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  transform: translateY(-2px);
+}
+
+.role-card-option.selected {
+  border-color: #4f46e5;
+  background: #eef2ff;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.14);
+  transform: translateY(-2px);
+}
+
+.role-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #64748b;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.role-card-option:hover .role-icon-box {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.role-card-option.selected .role-icon-box {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+}
+
+.role-text-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.role-text-box strong {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.25;
+}
+
+.role-card-option.selected .role-text-box strong {
+  color: #4338ca;
+}
+
+.role-text-box span {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.role-card-option.selected .role-text-box span {
+  color: #4f46e5;
+}
+
+/* ==========================================================================
+   Form Structure
+   ========================================================================== */
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reg-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.reg-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reg-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  letter-spacing: 0.1px;
+}
+
+/* ==========================================================================
+   Input Wrappers, Icons & Inputs
+   ========================================================================== */
+
+.reg-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1.5px solid #dbe2ea;
+  border-radius: 12px;
+  height: 48px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.reg-input-wrapper:hover {
+  border-color: #cbd5e1;
+}
+
+.reg-input-wrapper:focus-within {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3.5px rgba(99, 102, 241, 0.12);
+}
+
+.reg-input-icon {
+  width: 42px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 17px;
+  flex-shrink: 0;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.reg-input-wrapper:focus-within .reg-input-icon {
+  color: #6366f1;
+}
+
+.reg-input-wrapper input,
+.reg-input-wrapper select {
+  flex: 1;
+  height: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+  padding: 0 12px 0 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.reg-input-wrapper input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.reg-input-wrapper select {
+  cursor: pointer;
+  padding-right: 14px;
+}
+
+/* ==========================================================================
+   Password Visibility Toggle Button (Fixed)
+   ========================================================================== */
+
+.reg-eye-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 0 14px;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  transition: color 0.2s ease, transform 0.15s ease;
+  outline: none;
+  flex-shrink: 0;
+  border-radius: 0 12px 12px 0;
+}
+
+.reg-eye-btn:hover {
+  color: #4f46e5;
+  transform: scale(1.08);
+}
+
+.reg-eye-btn:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   Terms & Conditions Checkbox (Fixed)
+   ========================================================================== */
+
+.reg-terms-group {
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.reg-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.reg-checkbox-label input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: #4f46e5;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.reg-terms-text {
+  font-size: 13.5px;
+  color: #475569;
+  font-weight: 450;
+  line-height: 1.4;
+}
+
+.reg-terms-text a {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.reg-terms-text a:hover {
+  color: #3730a3;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Submit Button
+   ========================================================================== */
+
+.reg-submit-btn {
+  width: 100%;
+  height: 48px;
+  margin-top: 6px;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.28);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
+}
+
+.reg-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(79, 70, 229, 0.40);
+  background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+}
+
+.reg-submit-btn:hover:not(:disabled) svg {
+  transform: translateX(4px);
+}
+
+.reg-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.reg-submit-btn svg {
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.reg-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==========================================================================
+   Footer Sign In Link
+   ========================================================================== */
+
+.reg-footer-link {
+  text-align: center;
+  margin: 18px 0 0;
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 450;
+}
+
+.reg-footer-link a {
+  color: #4f46e5;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  margin-left: 4px;
+}
+
+.reg-footer-link a:hover {
+  color: #3730a3;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .register-card {
+    padding: 30px 22px;
+    border-radius: 20px;
+  }
+
+  .role-cards-grid {
+    gap: 8px;
+  }
+
+  .role-card-option {
+    padding: 12px 6px;
+  }
+
+  .role-icon-box {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .role-text-box strong {
+    font-size: 12.5px;
+  }
+
+  .role-text-box span {
+    font-size: 10.5px;
+  }
+
+  .reg-form-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 440px) {
+  .role-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .role-card-option {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 12px 14px;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .role-text-box {
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================================================
+   Captcha Security Verification Styling
+   ========================================================================== */
+
+.reg-captcha-group {
+  margin-bottom: 20px;
+}
+
+.reg-captcha-group label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.reg-captcha-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.captcha-display-badge {
+  position: relative;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 10px;
+  padding: 10px 18px;
+  min-width: 130px;
+  text-align: center;
+  overflow: hidden;
+  user-select: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #334155;
+}
+
+.captcha-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  color: #38bdf8;
+  text-shadow: 1px 1px 2px #0284c7, 0 0 10px rgba(56, 189, 248, 0.4);
+  font-style: italic;
+  display: inline-block;
+  transform: skew(-6deg);
+}
+
+.captcha-overlay-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 6px,
+    rgba(255, 255, 255, 0.08) 6px,
+    rgba(255, 255, 255, 0.08) 12px
+  );
+  pointer-events: none;
+}
+
+.btn-refresh-captcha {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-refresh-captcha:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+  transform: rotate(45deg);
+}
+
+.captcha-input-wrap {
+  flex: 1;
+}
+
+.captcha-input-wrap input {
+  font-family: monospace;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: none;
+  font-weight: 600;
+}

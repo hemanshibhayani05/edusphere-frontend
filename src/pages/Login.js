@@ -1,0 +1,187 @@
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FiEye, FiEyeOff, FiUser, FiAward, FiShield } from "react-icons/fi";
+import { useAuth } from "../context/AuthContext";
+import "./Login.css";
+
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
+
+function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    role: "student",
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    if (!form.email.trim()) {
+      setError("Please enter your email.");
+      return;
+    }
+
+    if (!form.password) {
+      setError("Please enter your password.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      // Authenticate user credentials
+      const user = await login(form.email, form.password, form.role);
+
+      const userRole = (user?.role || form.role || "student").toLowerCase();
+
+      if (userRole === "instructor") {
+        console.log("Instructor Login Successful!");
+        navigate("/instructor/dashboard");
+      } else if (userRole === "admin") {
+        console.log("Admin Login Successful!");
+        navigate("/admin/dashboard");
+      } else {
+        console.log("Student Login Successful!");
+
+        // Send login notification email to student's email address
+        try {
+          const targetEmail = (user?.email || form.email).trim();
+          const targetName = user?.name || "Student";
+
+          const emailResponse = await fetch(
+            `${API_BASE_URL}/api/email/login-notification`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email: targetEmail,
+                name: targetName,
+                role: "Student",
+                loginTime: new Date().toLocaleString("en-IN", {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                }),
+              }),
+            }
+          );
+          const emailData = await emailResponse.json();
+          if (emailData.success) {
+            console.log(`✅ Login notification email sent to ${targetEmail}!`);
+          } else {
+            console.log("❌ Email failed:", emailData.message);
+          }
+        } catch (emailError) {
+          console.error("❌ Could not connect to email server:", emailError);
+        }
+
+        navigate("/student/dashboard");
+      }
+    } catch (err) {
+      setError(err.message || "Invalid email or password.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="auth-page">
+      <form className="auth-card" onSubmit={handleSubmit}>
+        <h1>Welcome Back</h1>
+        <p>Sign in to your EduSphere account</p>
+
+        {/* Error */}
+        {error && <div className="error-message">{error}</div>}
+
+        {/* Role Selector */}
+        <div className="role-selector" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+          <button
+            type="button"
+            className={`role-btn ${form.role === "student" ? "active" : ""}`}
+            onClick={() => setForm({ ...form, role: "student" })}
+          >
+            <FiUser />
+            <span>Student</span>
+          </button>
+          <button
+            type="button"
+            className={`role-btn ${form.role === "instructor" ? "active" : ""}`}
+            onClick={() => setForm({ ...form, role: "instructor" })}
+          >
+            <FiAward />
+            <span>Instructor</span>
+          </button>
+          <button
+            type="button"
+            className={`role-btn ${form.role === "admin" ? "active" : ""}`}
+            onClick={() => setForm({ ...form, role: "admin" })}
+          >
+            <FiShield />
+            <span>Admin</span>
+          </button>
+        </div>
+
+        {/* Email */}
+        <label>Email Address</label>
+        <input
+          type="email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          placeholder="Enter your registered email"
+          required
+        />
+
+        {/* Password */}
+        <label>Password</label>
+        <div className="password-box">
+          <input
+            type={showPassword ? "text" : "password"}
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            placeholder="Enter your password"
+            required
+          />
+
+        </div>
+
+        {/* Remember */}
+        <div className="remember-row">
+          <label>
+            <input type="checkbox" />
+            Remember me
+          </label>
+          <span>Forgot password?</span>
+        </div>
+
+        {/* Login Button */}
+        <button className="btn full-btn" type="submit" disabled={loading}>
+          {loading
+            ? "Authenticating..."
+            : form.role === "instructor"
+              ? "Access Instructor Dashboard"
+              : form.role === "admin"
+                ? "Access Admin Dashboard"
+                : "Login"}
+        </button>
+
+        {/* Register (hidden for admin) */}
+        {form.role !== "admin" && (
+          <p className="auth-footer">
+            Don't have an account? <Link to="/register">Register</Link>
+          </p>
+        )}
+
+
+      </form>
+    </div>
+  );
+}
+
+export default Login;

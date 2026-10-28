@@ -1,0 +1,240 @@
+/* =========================================================================
+   ADMIN REPORTS & ANALYTICS PAGE STYLING
+   ========================================================================= */
+
+.reports-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.reports-header-info h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.reports-header-info p {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.reports-header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ── KPI Summary Cards ── */
+.reports-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpi-report-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.kpi-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.kpi-card-icon.rev {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.kpi-card-icon.enroll {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.kpi-card-icon.complete {
+  background: #fdf4ff;
+  color: #c026d3;
+}
+
+.kpi-card-icon.progress {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.kpi-card-details .kpi-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.1;
+}
+
+.kpi-card-details .kpi-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 3px;
+}
+
+/* ── Charts Dual Grid ── */
+.reports-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 640px) {
+  .reports-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.report-chart-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.report-chart-box h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.report-chart-box p {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 18px;
+}
+
+/* ── Payment Methods Breakdown ── */
+.methods-breakdown-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.methods-breakdown-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.methods-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.method-prog-box {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.method-prog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.method-prog-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.method-prog-pct {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4f46e5;
+}
+
+.method-prog-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.method-prog-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.method-prog-count {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+/* ── Course Table Styling ── */
+.progress-bar-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+  max-width: 100px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #10b981;
+  border-radius: 3px;
+}
+
+.progress-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  width: 36px;
+}

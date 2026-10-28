@@ -1,0 +1,259 @@
+/* =========================================================================
+   INSTRUCTOR PAYMENTS & DISBURSEMENTS STYLING
+   ========================================================================= */
+
+.inst-payouts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.inst-payouts-header h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.inst-payouts-header p {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.btn-refresh-payouts,
+.btn-export-payouts {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-refresh-payouts {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-refresh-payouts:hover {
+  background: #f1f5f9;
+}
+
+.btn-export-payouts {
+  background: #2563eb;
+  color: #ffffff;
+  border: 1px solid #2563eb;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.btn-export-payouts:hover {
+  background: #1d4ed8;
+}
+
+/* ── KPI Grid ── */
+.inst-payouts-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.inst-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.inst-kpi-card.highlight {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.inst-kpi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.inst-kpi-icon.net {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.inst-kpi-icon.gross {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.inst-kpi-icon.admin {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.inst-kpi-icon.count {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.inst-kpi-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.inst-kpi-val {
+  font-size: 22px;
+  font-weight: 800;
+  display: block;
+  margin: 4px 0 2px;
+}
+
+.inst-kpi-sub {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* ── Policy Banner ── */
+.payout-policy-banner {
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+  font-size: 13.5px;
+  color: #1e3a8a;
+  line-height: 1.5;
+}
+
+/* ── Search Box ── */
+.payouts-search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 14px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.payouts-search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13.5px;
+  width: 100%;
+}
+
+/* ── Badges & Buttons ── */
+.payout-badge-completed {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.btn-view-voucher {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-view-voucher:hover {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.no-payouts-box {
+  padding: 48px 24px;
+  text-align: center;
+  color: #64748b;
+}
+
+.no-payouts-box h3 {
+  font-size: 18px;
+  color: #0f172a;
+  margin: 0 0 6px;
+}
+
+.no-payouts-box p {
+  font-size: 13.5px;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* ── Voucher Modal ── */
+.voucher-header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voucher-details-grid {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.v-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.v-row:last-child {
+  border-bottom: none;
+}
+
+.v-row.total-row {
+  background: #f8fafc;
+  font-size: 14px;
+  font-weight: 700;
+}

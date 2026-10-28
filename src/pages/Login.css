@@ -1,0 +1,360 @@
+/* =========================================
+   EDUSPHERE LOGIN PAGE
+========================================= */
+
+.auth-page {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.12), transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.12), transparent 30%),
+    #f8fafc;
+}
+
+/* Login Card */
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 42px;
+  border-radius: 24px;
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.10),
+    0 5px 15px rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  animation: loginCardIn 0.6s ease;
+}
+
+/* Card Animation */
+
+@keyframes loginCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heading */
+
+.auth-card h1 {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.8px;
+}
+
+.auth-card > p:not(.auth-footer):not(.admin-login-link) {
+  text-align: center;
+  color: #64748b;
+  font-size: 15px;
+  margin: 0 0 30px;
+  line-height: 1.6;
+}
+
+/* Labels */
+
+.auth-card label {
+  display: block;
+  margin: 18px 0 8px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Inputs */
+
+.auth-card input {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  border: 1px solid #dbe2ea;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.auth-card input::placeholder {
+  color: #94a3b8;
+}
+
+.auth-card input:hover {
+  border-color: #b8c3d1;
+}
+
+.auth-card input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.10);
+}
+
+/* Password */
+
+.password-box {
+  position: relative;
+  width: 100%;
+}
+
+.password-box input {
+  padding-right: 50px;
+}
+
+.password-box button {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.password-box button:hover {
+  background: #f1f5f9;
+  color: #4f46e5;
+}
+
+/* Remember Row */
+
+.remember-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 18px 0 25px;
+}
+
+.remember-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.remember-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #6366f1;
+  cursor: pointer;
+}
+
+.remember-row span {
+  font-size: 13px;
+  color: #6366f1;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.remember-row span:hover {
+  text-decoration: underline;
+}
+
+/* Login Button */
+
+.full-btn {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #4f46e5
+  );
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+  transition: all 0.3s ease;
+}
+
+.full-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(79, 70, 229, 0.32);
+}
+
+.full-btn:active {
+  transform: translateY(0);
+}
+
+/* Error */
+
+.error-message {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 18px;
+  text-align: center;
+  animation: errorShake 0.3s ease;
+}
+
+@keyframes errorShake {
+  0% {
+    transform: translateX(-4px);
+  }
+
+  50% {
+    transform: translateX(4px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Register */
+
+.auth-footer {
+  text-align: center;
+  margin: 25px 0 10px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.auth-footer a {
+  color: #4f46e5;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Admin Login */
+
+.admin-login-link {
+  text-align: center;
+  margin: 12px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.admin-login-link a {
+  color: #0f172a;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.admin-login-link a:hover {
+  color: #4f46e5;
+}
+
+/* =========================================
+   ROLE SELECTOR
+========================================= */
+
+.role-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.role-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.role-btn:hover {
+  border-color: #a5b4fc;
+  color: #4f46e5;
+  background: #eef2ff;
+}
+
+.role-btn.active {
+  border-color: #6366f1;
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  color: #4338ca;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.role-btn svg {
+  font-size: 18px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .auth-page {
+    padding: 30px 15px;
+  }
+
+  .auth-card {
+    padding: 30px 22px;
+    border-radius: 20px;
+  }
+
+  .auth-card h1 {
+    font-size: 28px;
+  }
+
+  .remember-row {
+    gap: 10px;
+  }
+
+}
+
+/* Small Mobile */
+
+@media (max-width: 380px) {
+
+  .auth-card {
+    padding: 25px 18px;
+  }
+
+  .auth-card h1 {
+    font-size: 25px;
+  }
+
+  .remember-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+}
