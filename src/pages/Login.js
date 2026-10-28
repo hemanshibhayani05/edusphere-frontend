@@ -49,40 +49,28 @@ function Login() {
         console.log("Admin Login Successful!");
         navigate("/admin/dashboard");
       } else {
-        console.log("Student Login Successful!");
-
-        // Send login notification email to student's email address
-        try {
-          const targetEmail = (user?.email || form.email).trim();
-          const targetName = user?.name || "Student";
-
-          const emailResponse = await fetch(
-            `${API_BASE_URL}/api/email/login-notification`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                email: targetEmail,
-                name: targetName,
-                role: "Student",
-                loginTime: new Date().toLocaleString("en-IN", {
-                  dateStyle: "medium",
-                  timeStyle: "short",
-                }),
-              }),
-            }
-          );
-          const emailData = await emailResponse.json();
-          if (emailData.success) {
-            console.log(`✅ Login notification email sent to ${targetEmail}!`);
-          } else {
-            console.log("❌ Email failed:", emailData.message);
-          }
-        } catch (emailError) {
-          console.error("❌ Could not connect to email server:", emailError);
-        }
-
+        // Navigate immediately without waiting so login is instant
         navigate("/student/dashboard");
+
+        // Fire-and-forget login notification email in the background
+        const targetEmail = (user?.email || form.email).trim();
+        const targetName = user?.name || "Student";
+
+        fetch(`${API_BASE_URL}/api/email/login-notification`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: targetEmail,
+            name: targetName,
+            role: "Student",
+            loginTime: new Date().toLocaleString("en-IN", {
+              dateStyle: "medium",
+              timeStyle: "short",
+            }),
+          }),
+        }).catch((err) => {
+          console.warn("Background email notification skipped:", err.message);
+        });
       }
     } catch (err) {
       setError(err.message || "Invalid email or password.");
