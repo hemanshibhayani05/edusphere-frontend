@@ -1037,7 +1037,7 @@ function Enrollment() {
       };
 
       const emailResponse = await fetch(
-        "http://localhost:5000/api/email/payment-confirmation",
+        `${API_BASE_URL}/api/email/payment-confirmation`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
