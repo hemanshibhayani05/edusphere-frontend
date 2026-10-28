@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff, FiUser, FiAward, FiShield } from "react-icons/fi";
 import { useAuth } from "../context/AuthContext";
@@ -8,7 +8,21 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
 
 function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { user, login } = useAuth();
+
+  // If user is already logged in, immediately redirect to their dashboard
+  useEffect(() => {
+    if (user) {
+      const role = (user.role || "student").toLowerCase();
+      if (role === "instructor") {
+        navigate("/instructor/dashboard", { replace: true });
+      } else if (role === "admin") {
+        navigate("/admin/dashboard", { replace: true });
+      } else {
+        navigate("/student/dashboard", { replace: true });
+      }
+    }
+  }, [user, navigate]);
 
   const [form, setForm] = useState({
     email: "",
