@@ -85,13 +85,15 @@ function ManageStudents() {
   const fetchStudents = async () => {
     setLoading(true);
     try {
-      const [usersRes, coursesRes] = await Promise.all([
+      const [usersRes, coursesRes, paymentsRes] = await Promise.all([
         authFetch(`${API_BASE_URL}/api/auth/users`).then((r) => r.json()).catch(() => ({})),
         fetch(`${API_BASE_URL}/api/courses?all=true`).then((r) => r.json()).catch(() => ({})),
+        fetch(`${API_BASE_URL}/api/payments`).then((r) => r.json()).catch(() => ({})),
       ]);
 
       const allUsers = usersRes.users || [];
       const courseList = coursesRes.courses || [];
+      const apiPayments = paymentsRes.payments || [];
       setCourses(courseList);
 
       // Filter only users with role "student"
@@ -99,8 +101,24 @@ function ManageStudents() {
         (u) => (u.role || "student").toLowerCase() === "student"
       );
 
-      // Also get local enrollments
-      const enrollments = readStorage("edusphere_enrollments", []);
+      // Also get local enrollments and combine with backend database payments/enrollments
+      const localEnrollments = readStorage("edusphere_enrollments", []);
+      
+      // Combine API payments/enrollments and local enrollments
+      const enrollments = [
+        ...apiPayments.map((p) => ({
+          studentEmail: p.studentEmail,
+          studentName: p.studentName,
+          studentPhone: p.studentPhone,
+          courseTitle: p.courseTitle,
+          courseId: p.courseId,
+          progress: p.progress ?? 0,
+          paid: p.paid ?? (p.status === "paid" || p.status === "completed"),
+          price: p.amount ?? 0,
+          enrolledAt: p.enrolledAt || p.createdAt,
+        })),
+        ...localEnrollments,
+      ];
 
       // Merge user accounts with enrollment records
       const mergedList = studentUsers.map((st) => {
@@ -108,18 +126,32 @@ function ManageStudents() {
           (e) => e.studentEmail && e.studentEmail.toLowerCase() === st.email.toLowerCase()
         );
 
-        const primaryEnrollment = studentEnrollments[0] || {};
+        // Deduplicate course titles for this student
+        const uniqueCourses = [];
+        const seenCourses = new Set();
+        studentEnrollments.forEach((e) => {
+          if (e.courseTitle && !seenCourses.has(e.courseTitle.toLowerCase())) {
+            seenCourses.add(e.courseTitle.toLowerCase());
+            uniqueCourses.push(e);
+          }
+        });
+
+        const primaryEnrollment = uniqueCourses[0] || {};
+        // Calculate average progress across all enrolled courses, or primary progress
+        const avgProgress = uniqueCourses.length > 0
+          ? Math.round(uniqueCourses.reduce((sum, item) => sum + (item.progress || 0), 0) / uniqueCourses.length)
+          : (primaryEnrollment.progress || 0);
 
         return {
           _id: st._id,
           name: st.name,
           email: st.email,
-          phone: st.phone || "N/A",
+          phone: st.phone && st.phone !== "N/A" ? st.phone : (primaryEnrollment.studentPhone || "N/A"),
           isActive: st.isActive !== false,
           createdAt: st.createdAt,
-          coursesEnrolled: studentEnrollments.map((e) => e.courseTitle).filter(Boolean),
+          coursesEnrolled: uniqueCourses.map((e) => e.courseTitle).filter(Boolean),
           primaryCourse: primaryEnrollment.courseTitle || "Not enrolled yet",
-          progress: primaryEnrollment.progress || 0,
+          progress: avgProgress,
           paid: primaryEnrollment.paid || false,
           price: primaryEnrollment.price || 0,
         };
