@@ -157,28 +157,7 @@ function ManageStudents() {
         };
       });
 
-      // Also incorporate any enrolled students that might only be in localStorage
-      enrollments.forEach((e) => {
-        if (
-          e.studentEmail &&
-          !mergedList.some((m) => m.email.toLowerCase() === e.studentEmail.toLowerCase())
-        ) {
-          mergedList.push({
-            _id: `local-${e.studentEmail}`,
-            name: e.studentName || "Student",
-            email: e.studentEmail,
-            phone: e.studentPhone || "N/A",
-            isActive: true,
-            createdAt: e.enrolledAt,
-            coursesEnrolled: [e.courseTitle].filter(Boolean),
-            primaryCourse: e.courseTitle || "N/A",
-            progress: e.progress || 0,
-            paid: e.paid || false,
-            price: e.price || 0,
-          });
-        }
-      });
-
+      // Strictly keep ONLY real registered students from the user database
       setStudents(mergedList);
     } catch (err) {
       console.error("Error fetching students:", err);
