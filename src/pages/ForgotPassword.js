@@ -287,24 +287,6 @@ function ForgotPassword() {
             </div>
 
             <div className="success-actions">
-              {directResetUrl && (
-                <a
-                  href={directResetUrl}
-                  className="btn full-btn"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    textDecoration: "none",
-                    background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-                    boxShadow: "0 4px 14px rgba(16, 185, 129, 0.35)",
-                    marginBottom: 8,
-                  }}
-                >
-                  Reset Password Now &rarr;
-                </a>
-              )}
-
               <Link to="/login" className="btn full-btn" style={{ background: "#4f46e5" }}>
                 Return to Login
               </Link>
