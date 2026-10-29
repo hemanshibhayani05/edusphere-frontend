@@ -136,8 +136,16 @@ function InstructorLogin() {
 
           {/* Password Input */}
           <div className="instructor-form-group">
-            <div className="password-label-row">
+            <div className="password-label-row" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <label htmlFor="instructor-password">Password</label>
+              <Link
+                to={`/forgot-password?role=instructor${
+                  form.email ? `&email=${encodeURIComponent(form.email.trim())}` : ""
+                }`}
+                style={{ fontSize: "12.5px", color: "#10b981", textDecoration: "none", fontWeight: "600" }}
+              >
+                Forgot password?
+              </Link>
             </div>
             <div
               className={`instructor-input-wrapper ${

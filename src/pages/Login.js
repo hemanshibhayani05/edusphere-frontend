@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FiEye, FiEyeOff, FiUser, FiAward, FiShield } from "react-icons/fi";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { FiEye, FiEyeOff, FiUser, FiAward, FiShield, FiCheckCircle } from "react-icons/fi";
 import { useAuth } from "../context/AuthContext";
 import "./Login.css";
 
@@ -8,6 +8,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, login } = useAuth();
 
   // If user is already logged in, immediately redirect to their dashboard
@@ -25,13 +26,16 @@ function Login() {
   }, [user, navigate]);
 
   const [form, setForm] = useState({
-    email: "",
+    email: location.state?.email || "",
     password: "",
     role: "student",
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const successMsg = location.state?.resetSuccess
+    ? "Password reset successfully! Please sign in with your new password."
+    : "";
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -99,6 +103,27 @@ function Login() {
         <h1>Welcome Back</h1>
         <p>Sign in to your EduSphere account</p>
 
+        {/* Success Alert (e.g. redirected from reset password) */}
+        {successMsg && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              background: "#ecfdf5",
+              border: "1px solid #a7f3d0",
+              color: "#065f46",
+              padding: "12px 16px",
+              borderRadius: "10px",
+              fontSize: "13.5px",
+              marginBottom: "18px",
+            }}
+          >
+            <FiCheckCircle style={{ flexShrink: 0, fontSize: "18px", color: "#10b981" }} />
+            <span>{successMsg}</span>
+          </div>
+        )}
+
         {/* Error */}
         {error && <div className="error-message">{error}</div>}
 
@@ -150,7 +175,13 @@ function Login() {
             placeholder="Enter your password"
             required
           />
-
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            aria-label="Toggle password view"
+          >
+            {showPassword ? <FiEyeOff /> : <FiEye />}
+          </button>
         </div>
 
         {/* Remember */}
@@ -159,7 +190,14 @@ function Login() {
             <input type="checkbox" />
             Remember me
           </label>
-          <span>Forgot password?</span>
+          <Link
+            to={`/forgot-password?role=${form.role}${
+              form.email ? `&email=${encodeURIComponent(form.email.trim())}` : ""
+            }`}
+            className="forgot-link"
+          >
+            Forgot password?
+          </Link>
         </div>
 
         {/* Login Button */}

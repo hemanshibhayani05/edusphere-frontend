@@ -64,11 +64,11 @@ function CourseDetails() {
               Array.isArray(raw.modules) && raw.modules.length > 0
                 ? raw.modules
                 : raw.syllabus && raw.syllabus.trim()
-                ? raw.syllabus
+                  ? raw.syllabus
                     .split("\n")
                     .map((s) => s.trim().replace(/^[-•*]\s*/, ""))
                     .filter(Boolean)
-                : [
+                  : [
                     "Introduction & Fundamentals",
                     "Core Concepts & Architecture",
                     "Hands-on Project Implementation",
@@ -105,7 +105,7 @@ function CourseDetails() {
           setIsEnrolled(true);
         }
       }
-    } catch (_) {}
+    } catch (_) { }
   }, [id, user]);
 
   if (loading) {

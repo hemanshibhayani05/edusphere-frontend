@@ -129,8 +129,16 @@ function AdminLogin() {
 
           {/* Password Input */}
           <div className="admin-form-group">
-            <div className="password-label-row">
+            <div className="password-label-row" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <label htmlFor="admin-password">Secure Password</label>
+              <Link
+                to={`/forgot-password?role=admin${
+                  form.email ? `&email=${encodeURIComponent(form.email.trim())}` : ""
+                }`}
+                style={{ fontSize: "12px", color: "#38bdf8", textDecoration: "none", fontWeight: "600" }}
+              >
+                Forgot password?
+              </Link>
             </div>
             <div
               className={`admin-input-wrapper ${

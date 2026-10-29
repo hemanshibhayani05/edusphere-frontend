@@ -161,14 +161,17 @@
   cursor: pointer;
 }
 
-.remember-row span {
+.remember-row span,
+.remember-row .forgot-link {
   font-size: 13px;
   color: #6366f1;
   font-weight: 600;
   cursor: pointer;
 }
 
-.remember-row span:hover {
+.remember-row span:hover,
+.remember-row .forgot-link:hover {
+  color: #4f46e5;
   text-decoration: underline;
 }
 
