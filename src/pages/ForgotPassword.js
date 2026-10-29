@@ -29,6 +29,7 @@ function ForgotPassword() {
   );
   const [email, setEmail] = useState(initialEmail);
   const [loading, setLoading] = useState(false);
+  const [loadingMsg, setLoadingMsg] = useState("Sending Reset Link...");
   const [error, setError] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [successEmail, setSuccessEmail] = useState("");
@@ -50,9 +51,20 @@ function ForgotPassword() {
 
     try {
       setLoading(true);
+      setLoadingMsg("Sending Reset Link...");
+
+      // Show warm-up message after 5 seconds if still waiting
+      const slowTimer = setTimeout(() => {
+        setLoadingMsg("Waking up server, please wait...");
+      }, 5000);
+
+      // AbortController for a 60-second timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 60000);
 
       const response = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
         method: "POST",
+        signal: controller.signal,
         headers: {
           "Content-Type": "application/json",
         },
@@ -68,13 +80,11 @@ function ForgotPassword() {
         data = await response.json();
       } else {
         await response.text();
-        if (response.status === 404) {
-          throw new Error(
-            "The backend server on Render has not finished deploying the latest commit yet. Please trigger 'Deploy latest commit' in your Render dashboard."
-          );
-        }
         throw new Error("Unable to connect to password reset service. Please try again shortly.");
       }
+
+      clearTimeout(slowTimer);
+      clearTimeout(timeoutId);
 
       if (!response.ok || !data.success) {
         throw new Error(data.message || "Failed to send reset email. Please try again.");
@@ -83,7 +93,13 @@ function ForgotPassword() {
       setSuccessEmail(email.trim().toLowerCase());
       setIsSubmitted(true);
     } catch (err) {
-      setError(err.message || "An error occurred while sending the reset email.");
+      if (err.name === "AbortError") {
+        setError(
+          "Request timed out. The server may be waking up — please wait 30 seconds and try again."
+        );
+      } else {
+        setError(err.message || "An error occurred while sending the reset email.");
+      }
     } finally {
       setLoading(false);
     }
@@ -186,7 +202,7 @@ function ForgotPassword() {
                 disabled={loading}
               >
                 {loading ? (
-                  <span>Sending Reset Link...</span>
+                  <span>{loadingMsg}</span>
                 ) : (
                   <>
                     <FiSend style={{ marginRight: 8 }} />
