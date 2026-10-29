@@ -43,7 +43,14 @@ function ResetPassword() {
       try {
         setVerifying(true);
         const res = await fetch(`${API_BASE_URL}/api/auth/verify-reset-token/${token}`);
-        const data = await res.json();
+        let data = {};
+        const contentType = res.headers.get("content-type") || "";
+        if (contentType.includes("application/json")) {
+          data = await res.json();
+        } else {
+          await res.text();
+          data = { success: false, message: "Backend is updating. Please try again in a moment." };
+        }
 
         if (isMounted) {
           if (res.ok && data.success) {
@@ -129,7 +136,14 @@ function ResetPassword() {
         body: JSON.stringify({ password }),
       });
 
-      const data = await response.json();
+      let data = {};
+      const contentType = response.headers.get("content-type") || "";
+      if (contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        await response.text();
+        throw new Error("Unable to reset password. Please verify the reset link or try again.");
+      }
 
       if (!response.ok || !data.success) {
         throw new Error(data.message || "Failed to reset password. Please try again.");

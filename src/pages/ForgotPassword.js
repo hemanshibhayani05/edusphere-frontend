@@ -62,7 +62,19 @@ function ForgotPassword() {
         }),
       });
 
-      const data = await response.json();
+      let data = {};
+      const contentType = response.headers.get("content-type") || "";
+      if (contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        await response.text();
+        if (response.status === 404) {
+          throw new Error(
+            "The backend server on Render has not finished deploying the latest commit yet. Please trigger 'Deploy latest commit' in your Render dashboard."
+          );
+        }
+        throw new Error("Unable to connect to password reset service. Please try again shortly.");
+      }
 
       if (!response.ok || !data.success) {
         throw new Error(data.message || "Failed to send reset email. Please try again.");
