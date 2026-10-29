@@ -33,6 +33,7 @@ function ForgotPassword() {
   const [error, setError] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [successEmail, setSuccessEmail] = useState("");
+  const [directResetUrl, setDirectResetUrl] = useState("");
 
   useEffect(() => {
     if (initialEmail) {
@@ -90,6 +91,9 @@ function ForgotPassword() {
         throw new Error(data.message || "Failed to send reset email. Please try again.");
       }
 
+      if (data.resetUrl) {
+        setDirectResetUrl(data.resetUrl);
+      }
       setSuccessEmail(email.trim().toLowerCase());
       setIsSubmitted(true);
     } catch (err) {
@@ -246,7 +250,25 @@ function ForgotPassword() {
             </div>
 
             <div className="success-actions">
-              <Link to="/login" className="btn full-btn">
+              {directResetUrl && (
+                <a
+                  href={directResetUrl}
+                  className="btn full-btn"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textDecoration: "none",
+                    background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                    boxShadow: "0 4px 14px rgba(16, 185, 129, 0.35)",
+                    marginBottom: 8,
+                  }}
+                >
+                  Reset Password Now &rarr;
+                </a>
+              )}
+
+              <Link to="/login" className="btn full-btn" style={{ background: "#4f46e5" }}>
                 Return to Login
               </Link>
 
