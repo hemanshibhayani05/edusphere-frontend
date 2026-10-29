@@ -93,6 +93,43 @@ function ForgotPassword() {
 
       if (data.resetUrl) {
         setDirectResetUrl(data.resetUrl);
+
+        // Also trigger Vercel Serverless Function to guarantee immediate email delivery via Gmail
+        if (typeof window !== "undefined" && window.location.hostname !== "localhost") {
+          fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              to: email.trim().toLowerCase(),
+              subject: `🔑 Reset Your EduSphere Password (${role.toUpperCase()})`,
+              html: `
+                <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 580px; margin: 0 auto; padding: 28px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0;">
+                  <div style="background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); padding: 24px; border-radius: 10px; text-align: center; color: #ffffff; margin-bottom: 24px;">
+                    <h2 style="margin: 0; font-size: 22px;">🔑 Password Reset Request</h2>
+                    <p style="margin: 4px 0 0; color: #e0e7ff; font-size: 13px;">EduSphere Learning Platform</p>
+                  </div>
+                  <p style="font-size: 15px; color: #1e293b;">Hello,</p>
+                  <p style="font-size: 14px; color: #475569; line-height: 1.6;">
+                    We received a request to reset your password for your <strong>${role.toUpperCase()}</strong> account (<strong>${email}</strong>).
+                  </p>
+                  <p style="margin: 28px 0; text-align: center;">
+                    <a href="${data.resetUrl}" target="_blank" style="display: inline-block; background: #4f46e5; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 15px; padding: 14px 32px; border-radius: 8px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);">
+                      Reset My Password &rarr;
+                    </a>
+                  </p>
+                  <p style="font-size: 12.5px; color: #64748b; line-height: 1.5;">
+                    If the button does not work, copy and paste this link in your browser:<br>
+                    <a href="${data.resetUrl}" style="color: #4f46e5; word-break: break-all;">${data.resetUrl}</a>
+                  </p>
+                  <hr style="border: none; border-top: 1px solid #f1f5f9; margin: 24px 0;">
+                  <p style="font-size: 11.5px; color: #94a3b8; text-align: center; margin: 0;">
+                    © ${new Date().getFullYear()} EduSphere Learning. This link expires in 60 minutes.
+                  </p>
+                </div>
+              `,
+            }),
+          }).catch((e) => console.warn("Vercel email dispatch fallback warning:", e.message));
+        }
       }
       setSuccessEmail(email.trim().toLowerCase());
       setIsSubmitted(true);
