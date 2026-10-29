@@ -190,14 +190,16 @@ function Login() {
             <input type="checkbox" />
             Remember me
           </label>
-          <Link
-            to={`/forgot-password?role=${form.role}${
-              form.email ? `&email=${encodeURIComponent(form.email.trim())}` : ""
-            }`}
-            className="forgot-link"
-          >
-            Forgot password?
-          </Link>
+          {form.role !== "admin" && (
+            <Link
+              to={`/forgot-password?role=${form.role}${
+                form.email ? `&email=${encodeURIComponent(form.email.trim())}` : ""
+              }`}
+              className="forgot-link"
+            >
+              Forgot password?
+            </Link>
+          )}
         </div>
 
         {/* Login Button */}

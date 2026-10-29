@@ -7,7 +7,6 @@ import {
   FiAlertCircle,
   FiUser,
   FiAward,
-  FiShield,
   FiSend,
 } from "react-icons/fi";
 import "./ForgotPassword.css";
@@ -26,9 +25,7 @@ function ForgotPassword() {
   const initialEmail = searchParams.get("email") || "";
 
   const [role, setRole] = useState(
-    ["student", "instructor", "admin"].includes(initialRole.toLowerCase())
-      ? initialRole.toLowerCase()
-      : "student"
+    initialRole.toLowerCase() === "instructor" ? "instructor" : "student"
   );
   const [email, setEmail] = useState(initialEmail);
   const [loading, setLoading] = useState(false);
@@ -123,8 +120,8 @@ function ForgotPassword() {
                 className="role-selector"
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr 1fr",
-                  gap: 8,
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 12,
                   marginBottom: 16,
                 }}
               >
@@ -150,17 +147,6 @@ function ForgotPassword() {
                   <FiAward />
                   <span>Instructor</span>
                 </button>
-                <button
-                  type="button"
-                  className={`role-btn ${role === "admin" ? "active" : ""}`}
-                  onClick={() => {
-                    setRole("admin");
-                    setError("");
-                  }}
-                >
-                  <FiShield />
-                  <span>Admin</span>
-                </button>
               </div>
 
               {/* Email Input */}
@@ -175,7 +161,7 @@ function ForgotPassword() {
                     setEmail(e.target.value);
                     if (error) setError("");
                   }}
-                  placeholder="e.g. name@example.com"
+                  placeholder=" name@example.com"
                   required
                   autoFocus
                 />

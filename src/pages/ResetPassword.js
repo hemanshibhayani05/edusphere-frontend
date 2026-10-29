@@ -250,7 +250,7 @@ function ResetPassword() {
                   onClick={() => setShowPassword(!showPassword)}
                   aria-label="Toggle password visibility"
                 >
-                  {showPassword ? <FiEyeOff /> : <FiEye />}
+
                 </button>
               </div>
 
@@ -273,7 +273,7 @@ function ResetPassword() {
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   aria-label="Toggle confirm password visibility"
                 >
-                  {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+
                 </button>
               </div>
 
